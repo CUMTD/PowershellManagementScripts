@@ -43,5 +43,5 @@ The remote server must have the
 The remote server must have [Powershell Remoting](#prerequisites) enabled.
 #### Usage
 ```powershell
-Restart-MtdAppPool -computerName <COMPUTER_NAME> -$appPoolName <APP_POOL_NAME>
+Restart-MtdAppPool -computerName <COMPUTER_NAME> -appPoolName <APP_POOL_NAME>
 ```
