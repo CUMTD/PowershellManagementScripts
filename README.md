@@ -18,6 +18,9 @@ Set-ExecutionPolicy Unrestricted -Force
 ```
 
 ### Installing Modules
+
+Run `Install-MtdModules.ps1` or follow the instructions bellow to install manually.
+
 1. Create a directory called `C:\Users\%username%\Documents\WindowsPowerShell\Modules`
 2. Open Powershell and make sure the directory is in your path (`$env:PSModulePath`).
 3. Close Powershel and copy the `MtdModules` directory into ``.
