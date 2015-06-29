@@ -32,17 +32,19 @@ Run `Install.ps1` or follow the instructions bellow to install manually.
 
 ### Remove-MtdRemoteConnections
 Kills all PSSessions for a remote computer
+#### Requirements
+The remote server must have [PowerShell Remoting](#prerequisites) enabled.
 #### Usage
 ```powershell
 Remove-MtdRemoteConnections -computerName <COMPUTER_NAME>
 ```
-
 ### Restart-MtdAppPool
 Recycles the app pool on a remote IIS server
 #### Requirements
 The remote server must have the 
 [Web Server Administration Cmdlets](https://technet.microsoft.com/en-us/library/ee790599.aspx)
  installed.
+ 
 The remote server must have [PowerShell Remoting](#prerequisites) enabled.
 #### Usage
 ```powershell
@@ -53,6 +55,7 @@ Restart-MtdAppPool -computerName <COMPUTER_NAME> -appPoolName <APP_POOL_NAME>
 Imports a user photo into the Exchange Offline Address Book.
 #### Requirements
 The remote server must be running Exchange 2010.
+
 The remote server must have [PowerShell Remoting](#prerequisites) enabled.
 #### Usage
 ```powershell
