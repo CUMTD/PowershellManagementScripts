@@ -25,7 +25,25 @@ function Import-ExchangePhoto {
 		[string]$userName,
 		[string]$picturePath
 	)
-
+	
+	# show a file picker if we don't specify a path
+	if (!$picturePath) {
+		[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+		$dialog = New-Object System.Windows.Forms.OpenFileDialog
+		$dialog = New-Object System.Windows.Forms.OpenFileDialog
+		$dialog.DefaultExt = '.jpeg'
+		$dialog.Filter = 'jpg files|*.jpg|jpeg files|*.jpeg|all files|*.*';
+		$dialog.FilterIndex = 0
+		$dialog.InitialDirectory = $home
+		$dialog.Multiselect = $false
+		$dialog.RestoreDirectory = $true
+		$dialog.Title = "Select a JEPG file (< 10MB)"
+		$dialog.ValidateNames = $true
+		$dialog.ShowHelp = $true
+		$dialog.ShowDialog()
+		$picturePath = $dialog.FileName
+	}
+	
 	$fileData = ([Byte[]](Get-Content -Path $picturePath -Encoding Byte -ReadCount 0))
 	$session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri ("http://{0}/PowerShell/" -f $computerName) -Authentication Kerberos
   
