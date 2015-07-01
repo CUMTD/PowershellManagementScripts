@@ -52,12 +52,13 @@ Restart-MtdAppPool -computerName <COMPUTER_NAME> -appPoolName <APP_POOL_NAME>
 ```
 
 ### Import-ExchangePhoto
-Imports a user photo into the Exchange Offline Address Book.
+Imports a user photo into the Exchange Offline Address Book. A file picker will be used if no `picturePath` is provided. 
 #### Requirements
 The remote server must be running Exchange 2010.
 
 The remote server must have [PowerShell Remoting](#prerequisites) enabled.
 #### Usage
 ```powershell
+Import-ExchangePhoto -userName <USER_NAME> -computerName <COMPUTER_NAME>
 Import-ExchangePhoto -userName <USER_NAME> -computerName <COMPUTER_NAME> -picturePath <LOCAL_PATH_TO_PHOTO>
 ```
