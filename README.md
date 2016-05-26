@@ -50,15 +50,42 @@ The remote server must have [PowerShell Remoting](#prerequisites) enabled.
 ```powershell
 Restart-MtdAppPool -computerName <COMPUTER_NAME> -appPoolName <APP_POOL_NAME>
 ```
-
-### Import-ExchangePhoto
-Imports a user photo into the Exchange Offline Address Book. A file picker will be used if no `picturePath` is provided. 
+### Get-Office365Session
+Get an Office 365 session.
 #### Requirements
-The remote server must be running Exchange 2010.
-
-The remote server must have [PowerShell Remoting](#prerequisites) enabled.
+None.
 #### Usage
 ```powershell
-Import-ExchangePhoto -userName <USER_NAME> -computerName <COMPUTER_NAME>
-Import-ExchangePhoto -userName <USER_NAME> -computerName <COMPUTER_NAME> -picturePath <LOCAL_PATH_TO_PHOTO>
+$Credential = $Get-Credential
+$Session = Get-MtdOffice365Session -credential $Credential
+$Import-PSSession $Session
+# Do Work
+$Remove-PSSession $Session
+```
+### Enable-LitigationHold
+Enable litigation hold for a single user or for all users.
+#### Requirements
+None.
+#### Usage
+For a single user
+```powershell
+$Credential = $Get-Credential
+Enable-LitigationHold -user foo@cumtd.com -credential $Credential
+```
+For all users
+```powershell
+$Credential = $Get-Credential
+Enable-LitigationHold -credential $Credential -all
+```
+### Redo-SharedCalendarPermission
+Pulls a list of all users on a shared calendar, removes them, then re-addes them.
+
+This is a fix that Microsoft Support recomends when calendar appointments cannot be seen between users.
+
+#### Requirements
+None.
+#### Usage
+```powershell
+$Credential = $Get-Credential
+Redo-SharedCalendarPermission -mailbox foo@cumtd.com -credential $Credential
 ```
