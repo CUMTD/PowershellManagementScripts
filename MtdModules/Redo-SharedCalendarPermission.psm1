@@ -14,13 +14,13 @@
 
  .Example
    # Redo permissions on the "Large Conference Room"" calendar.
-   Fix-SharedCalendarPermission -mailbox largeconference@cumtd.com
+   Redo-SharedCalendarPermission -mailbox largeconference@cumtd.com
 #>
 function Redo-SharedCalendarPermission {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$True)]
-        [string]$mailbox
+        [string]$mailbox,
         [Parameter(Mandatory=$True)]
         [System.Management.Automation.CredentialAttribute()]
         $credential
@@ -43,7 +43,7 @@ function Redo-SharedCalendarPermission {
     # Add FullAccess Permission
     ForEach ($Username in $Usernames) {
         Write-Output "Adding permissions for $Username on mailbox $mailbox"
-        $permission = Add-MailboxPermission -Identity $mailbox -User $Username -AccessRights FullAccess -InheritanceType All -Automapping $True
+        Add-MailboxPermission -Identity $mailbox -User $Username -AccessRights FullAccess -InheritanceType All -Automapping $True | Out-Null
     }
 
     #Close Session
