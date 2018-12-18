@@ -113,7 +113,7 @@ Username with which to authenticate to AD
 An array of usernames to move
 .Example
 # Move tech servers staff
-Move-HomeDirectories -originBaseDirectory d:\users -destinationBaseDirectory e:\active -dc mtddc1.cumtd.com -fs mtdfs1.cumtd.com -authUserName cumtd.com\adminblackman -usersToMove rblackman, jfenelon, dorr, bcronk
+Move-HomeDirectories -originBaseDirectory d:\users -destinationBaseDirectory e:\active -dc mtddc1.cumtd.com -fs mtdfs1.cumtd.com -authUserName cumtd.com\foo -usersToMove user1, user2, user3
 #>
 function Move-HomeDirectories {
     [CmdletBinding()]

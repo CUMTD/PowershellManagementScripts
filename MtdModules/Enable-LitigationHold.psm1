@@ -11,12 +11,13 @@
   .Parameter user
   If all is $False, a user must be specified. Use their email address.
   
-  .Parameter credential
-  Credentials to pass to Office 365
+  .Parameter username
+  Username of the Office 365 user.
 
  .Example
    # Redo permissions on the "Large Conference Room"" calendar.
-   Fix-SharedCalendarPermission -mailbox largeconference@cumtd.com
+   Fix-SharedCalendarPermission -mailbox largeconference@cumtd.com -username foo@cumtd.com
+   Must be run in Microsoft Exchange Online Powershell Module
 #>
 function Enable-LitigationHold {
     [CmdletBinding()]
@@ -24,13 +25,12 @@ function Enable-LitigationHold {
         [switch]$all,
         [string]$user,
         [Parameter(Mandatory=$True)]
-        [System.Management.Automation.CredentialAttribute()]
-        $credential
+        [String]
+        $username
     )
     
     #Setup Session
-    $Session = Get-Office365Session -credential $credential
-    Import-PSSession $Session
+    Connect-EXOPSSession -UserPrincipalName $username
     
     # Enable hold
     # Must use the -all flag or specify a user
@@ -40,11 +40,10 @@ function Enable-LitigationHold {
         Get-Mailbox -Identity $user | Set-Mailbox -LitigationHoldEnabled $True
     } else {
         throw "Must provide a valid -user or use the -all parameter."
-    }
-    
-    #Close Session
-    Remove-PSSession $Session
-    
+	}
+	
+	Get-PSSession | Remove-PSSession
+        
 }
 
 Export-ModuleMember Enable-LitigationHold

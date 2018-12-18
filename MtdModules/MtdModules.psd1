@@ -30,7 +30,7 @@ Description = 'Utility modules for managing MTD computers.'
 PowerShellVersion = '4.0'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('Remove-RemoteConnections.psm1', 'Restart-AppPool.psm1', 'Redo-SharedCalendarPermission.psm1', 'Get-Office365Session.psm1', 'Enable-LitigationHold.psm1', 'Move-HomeDirectories.psm1')
+NestedModules = @('Remove-RemoteConnections.psm1', 'Restart-AppPool.psm1', 'Redo-SharedCalendarPermission.psm1', 'Enable-LitigationHold.psm1', 'Move-HomeDirectories.psm1', 'Hide-MailboxFromGAL.psm1')
 
 # Functions to export from this module
 FunctionsToExport = '*'
